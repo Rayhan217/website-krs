@@ -4,16 +4,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Admin Dashboard</title>
+	<title>Admin User</title>
 	<link rel="stylesheet" href="../assets/css/dashboard.css">
 </head>
 <body>
 	
 	<div class="wrapper">
 		<div class="menu">
-			<h1 class="heading">Dashboard</h1>
+			<h1 class="heading">Data User</h1>
 			<ul>
-				<li>
+			<li>
 					<a href="dashboard.php">Dashboard</a>
 				</li>
 				<li>
@@ -31,11 +31,28 @@
 			</ul>
 		</div>
 		<div class="content">
-			<img src="../assets/img/dosen.jpg">
-			<h1>
-				Selamat Datang, <?= $_SESSION['username'] ?> <br>
-				Silahkan Pilih Menu Di Sebelah Kiri
-			</h1>
+			<div class="admin">
+				<h2>Daftar User</h2>
+				<table>
+					<tr>
+						<th>No.</th>
+						<th>NIM</th>
+						<th>Nama</th>
+					</tr>
+<?php
+	$query = "SELECT * FROM user";
+	$res   = mysqli_query($conn, $query);
+	$no    = 1;
+	while($row = mysqli_fetch_assoc($res)): 
+?>
+					<tr>
+						<td><?= $no ?></td>
+						<td><?= $row['nim'] ?></td>
+						<td><?= $row['nama'] ?></td>
+					</tr>
+<?php $no++; endwhile ?>
+				</table>
+			</div>
 		</div>
 	</div>
 
